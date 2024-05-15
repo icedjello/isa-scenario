@@ -1,5 +1,9 @@
+import Footer from "~/components/Footer";
+import Navbar from "~/components/Navbar";
+import "~/styles/globals.css";
+
 export const metadata = {
-  title: "ISA Scenario",
+  title: "ISAs & Pensions",
 };
 
 export default function RootLayout({
@@ -9,7 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="h-screen">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
