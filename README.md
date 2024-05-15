@@ -51,3 +51,8 @@ Initial thoughts:
 - I will assume that users have already logged-in and made an account.
 
 - I will assume that users HAVE NOT supplied their NI number yet.
+
+Things to explain:
+
+- the DB schema, seed etc.
+- the api route.
