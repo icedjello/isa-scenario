@@ -1,29 +1,53 @@
-# Create T3 App
+# What is this?
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+- A small project/showcase for a FinTech provider of workplace savings and pensions.
 
-## What's next? How do I make an app with this?
+## What should it do?
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- _The Company_ already offers ISAs and Pensions to employees of companies (employers) who have an existing arrangement with _The Company_.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- _The Company_ would like to be able to offer ISA investments to retail (direct) customers who are not associated with an employer.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- _The Company_ would like to keep the functionality for retail ISA customers separate from its Employer-based offering where practical.
 
-## Learn More
+- When customers invest into a _Company_ ISA they should be able to select a single fund from a list of available options. Currently they will be restricted to selecting a single fund however in the future we would anticipate allowing selection of multiple options.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- Once the customer’s selection has been made, they should also be able to provide details of the amount they would like to invest.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- Given the customer has both made their selection and provided the amount the system should record these values and allow these details to be queried at a later date.
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- As a specific use case please consider a customer who wishes to deposit £25,000 into a _Company_ ISA all into the _Company_ Equities Fund.
 
-## How do I deploy this?
+## What to discuss?
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- What you have done and why.
+
+- The specific decisions you made about your solution.
+
+- Any assumptions you have made in the solution you have presented.
+
+- Any enhancements you considered but decided not to cover.
+
+Initial thoughts:
+
+- £25k is too high. The max UK allowance per year is £20k. This amount will need to be validated.
+
+- The FE can check if the ISA amount is `> 20k` but this could be seen as business logic in the FE. A user could easily turn this check off and send the request.
+
+- £20k is the total amount a user can submit across all ISAs per year. This will also have to be validated. If a user has already put £10k in a Vanguard ISA, their maximum amount will have to be £10k.
+
+- Research suggests this will be up to the user to verify. The onus would not necessarily be on the company to check.
+
+- To make an ISA account, a customer has to provide a National Insurance number. I'll assume this could be used to track a person's allowance, other accounts, etc.
+
+- Did some extra research on this. It seems like it's up to the individual to ensure this.
+
+- This is a bit of a mystery to me: "_The Company_ would like to keep the functionality for retail ISA customers separate from its Employer-based offering where practical."
+
+- I know that _The Company_ offers a white-label product but I don't believe this is for employers.
+
+- I will assume that individuals will be able to use their employees app to create an ISA.
+
+- I will assume that users have already logged-in and made an account.
+
+- I will assume that users HAVE NOT supplied their NI number yet.
