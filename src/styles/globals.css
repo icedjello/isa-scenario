@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply flex h-screen flex-col;
+  }
+  main {
+    @apply container mx-8 my-4 flex min-h-[600px] min-w-[800px] flex-col;
+  }
+
+  h1 {
+    @apply my-6 text-3xl;
+  }
+
+  h2 {
+    @apply my-4 text-2xl;
+  }
+}

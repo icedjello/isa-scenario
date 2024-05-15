@@ -1,12 +1,13 @@
 import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
   content: ["./src/**/*.tsx"],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+      colors: {
+        companyPink: "#D3408E",
+        companyPurple: "#A06EA6",
+        companyBlue: "#4EABE8",
       },
     },
   },
