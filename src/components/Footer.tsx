@@ -8,7 +8,7 @@ export default function Footer() {
           href="/"
           className="mb-4 flex items-center space-x-3 self-center whitespace-nowrap text-2xl font-semibold sm:mb-0 rtl:space-x-reverse"
         >
-          Cushon
+          The Company
         </Link>
         <div className="mb-6 flex flex-wrap items-center text-sm font-medium">
           <Link href="#" className="me-4 hover:underline md:me-6">
@@ -28,7 +28,7 @@ export default function Footer() {
       <span className="block text-center text-sm">
         © 2024{" "}
         <a href="#" className="hover:underline">
-          Cushon™
+          The Company™
         </a>
         . All Rights Reserved.
       </span>
