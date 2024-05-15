@@ -2,11 +2,11 @@ import { db } from "~/server/db";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const productId = Number(searchParams.get("id"));
-  console.log("ID", productId);
+  const productId = searchParams.get("id");
+
   if (productId) {
     const product = await db.query.products.findFirst({
-      where: (product, { eq }) => eq(product.id, productId),
+      where: (product, { eq }) => eq(product.id, Number(productId)),
     });
 
     if (product) {
