@@ -38,6 +38,16 @@ export async function POST(request: NextRequest) {
   const zodResult = newInvestmentSchema.safeParse(reqJson);
 
   if (zodResult.success) {
+    const alreadyHasInvestment =
+      (await db.select().from(investments)).length > 0;
+
+    if (alreadyHasInvestment) {
+      return Response.json(null, {
+        status: 400,
+        statusText: "You already have an active investment",
+      });
+    }
+
     const investment = await db.insert(investments).values({
       product_id: zodResult.data.product_id,
       value: zodResult.data.value,
