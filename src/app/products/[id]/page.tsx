@@ -3,6 +3,7 @@ import { z } from "zod";
 import { type products } from "~/server/db/schema";
 import { type InferSelectModel } from "drizzle-orm";
 import Card from "~/components/Card";
+import { API_URL } from "~/app/consts";
 
 type Props = {
   params: { id: number };
@@ -19,21 +20,17 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  const productsRes = await fetch(
-    `http://localhost:3000/api/products?id=${params.id}`,
-    { cache: "no-store" },
-  );
+  const productsRes = await fetch(`${API_URL}/products?id=${params.id}`, {
+    cache: "no-store",
+  });
 
   if (productsRes.status >= 400) {
     notFound();
   }
 
-  const productRes = await fetch(
-    `http://localhost:3000/api/products?id=${params.id}`,
-    {
-      cache: "no-store",
-    },
-  );
+  const productRes = await fetch(`${API_URL}/products?id=${params.id}`, {
+    cache: "no-store",
+  });
 
   const product = (await productRes.json()) as InferSelectModel<
     typeof products
@@ -42,8 +39,8 @@ export default async function Page({ params }: Props) {
   return (
     <main>
       <Card additionalStyles="flex flex-col items-center justify-center max-w-[400px]">
-        <h1 className="text-companyPink mb-2 text-3xl">{product.name}</h1>
-        <h2 className="text-companyPurple mb-2 text-2xl">
+        <h1 className="mb-2 text-3xl text-companyPink">{product.name}</h1>
+        <h2 className="mb-2 text-2xl text-companyPurple">
           Interest/Yr: {product.ipa}
         </h2>
         <p className="mb-2">{product.description}</p>

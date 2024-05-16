@@ -1,10 +1,13 @@
 import { type InferSelectModel } from "drizzle-orm";
 import Link from "next/link";
+import { API_URL } from "~/app/consts";
 import Card from "~/components/Card";
 import { type products } from "~/server/db/schema";
 
 export default async function Page() {
-  const productsRes = await fetch("http://localhost:3000/api/products");
+  const productsRes = await fetch(`${API_URL}/products`, {
+    cache: "no-store",
+  });
   const productsData = (await productsRes.json()) as InferSelectModel<
     typeof products
   >[];
@@ -19,12 +22,12 @@ export default async function Page() {
               className="flex flex-col items-center"
               href={`/investments/new-investments/${id}`}
             >
-              <h2 className="text-companyPink group-has-[hover]:text-companyBlue mb-1 text-xl ">
+              <h2 className="mb-1 text-xl text-companyPink group-has-[hover]:text-companyBlue ">
                 {name}
               </h2>
               <p className="mb-2 font-bold">Interest/Yr: {ipa}%</p>
               <p className="mb-2 line-clamp-4">{description}</p>
-              <small className="decoration-companyBlue align-end hover:underline">
+              <small className="align-end decoration-companyBlue hover:underline">
                 Click to see more
               </small>
             </Link>

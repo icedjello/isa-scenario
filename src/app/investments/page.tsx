@@ -3,9 +3,10 @@ import type { investments, products } from "~/server/db/schema";
 import { type InferSelectModel } from "drizzle-orm";
 import Card from "~/components/Card";
 import { twMerge } from "tailwind-merge";
+import { API_URL } from "../consts";
 
 export default async function Page() {
-  const investmentsRes = await fetch("http://localhost:3000/api/investments", {
+  const investmentsRes = await fetch(`${API_URL}/investments`, {
     cache: "no-store",
   });
   const investmentsData = (await investmentsRes.json()) as InferSelectModel<
@@ -15,12 +16,9 @@ export default async function Page() {
   const hasInvestments = investmentsData.length > 0;
 
   const getProduct = async (product_id: number) => {
-    const productRes = await fetch(
-      `http://localhost:3000/api/products?id=${product_id}`,
-      {
-        cache: "no-store",
-      },
-    );
+    const productRes = await fetch(`${API_URL}/products?id=${product_id}`, {
+      cache: "no-store",
+    });
     return (await productRes.json()) as InferSelectModel<typeof products>;
   };
 
@@ -44,7 +42,7 @@ export default async function Page() {
                 href={`/products/${product.id}`}
                 className="flex flex-col items-center"
               >
-                <h2 className="text-companyPink mb-1 text-xl">
+                <h2 className="mb-1 text-xl text-companyPink">
                   {product.name}
                 </h2>
                 <p className="mb-2 font-bold">
@@ -74,7 +72,7 @@ export default async function Page() {
             <p>You don&apos;t have any investments</p>
             <Link
               href="/investments/new-investments"
-              className="decoration-companyBlue text-companyPink text-lg hover:underline"
+              className="text-lg text-companyPink decoration-companyBlue hover:underline"
             >
               Click to add investment
             </Link>

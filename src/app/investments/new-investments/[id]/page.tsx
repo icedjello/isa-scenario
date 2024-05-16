@@ -6,6 +6,7 @@ import { type products } from "~/server/db/schema";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Button from "~/components/Button";
+import { API_URL } from "~/app/consts";
 
 const newInvestmentSchema = z.object({
   amount: z.number(),
@@ -24,12 +25,9 @@ export default function Page({ params }: Props) {
 
   const getProductData = useCallback(async () => {
     try {
-      const productRes = await fetch(
-        `http://localhost:3000/api/products?id=${params.id}`,
-        {
-          cache: "no-store",
-        },
-      );
+      const productRes = await fetch(`${API_URL}/products?id=${params.id}`, {
+        cache: "no-store",
+      });
       const productDetails = (await productRes.json()) as Product;
       setProductDetails(productDetails);
     } finally {
@@ -61,7 +59,7 @@ export default function Page({ params }: Props) {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/investments", {
+      const response = await fetch(`${API_URL}/investments`, {
         method: "POST",
         cache: "no-store",
         body: JSON.stringify({
@@ -99,7 +97,7 @@ export default function Page({ params }: Props) {
                 required
                 type="number"
                 name="investmentAmount"
-                className="focus:border-companyBlue border-companyPurple mb-2 block w-1/3  rounded-lg border p-2.5 text-sm"
+                className="mb-2 block w-1/3 rounded-lg border  border-companyPurple p-2.5 text-sm focus:border-companyBlue"
                 placeholder="1500"
               />
               {error && <div style={{ color: "red" }}>{error}</div>}

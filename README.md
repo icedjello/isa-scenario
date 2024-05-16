@@ -2,9 +2,20 @@
 
 - A small project/showcase for a FinTech company that provides pensions & ISAs.
 
+![alt text](image.png)
+
 ## How do I run it?
 
-- do this...
+I used pnpm as the package manager.
+here are the steps you can take:
+
+- Clone the repo and navigate into it
+- run `pnpm i`
+- run `pnpm db:push`
+- run `pnpm db:seed`
+- run `pnpm dev`
+
+Or to build instead of `pnpm dev` use `pnpm build` and then use `pnpm start`
 
 ## The Requirements
 
