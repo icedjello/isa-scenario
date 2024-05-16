@@ -16,7 +16,7 @@ const main = async () => {
       ipa: 2.1,
     },
     {
-      name: "The Great ISA",
+      name: "The Equities ISA",
       description:
         "A condimentum vitae sapien pellentesque habitant morbi tristique senectus. Gravida arcu ac tortor dignissim convallis.",
       ipa: 8,
